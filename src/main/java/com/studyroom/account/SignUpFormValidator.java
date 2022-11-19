@@ -20,7 +20,8 @@ public class SignUpFormValidator implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         //TODO email, nickname
-        SignUpForm signUpForm = (SignUpForm)errors;
+        SignUpForm signUpForm = (SignUpForm)target;
+        //TODO : fallback, 폼에 email, password가 안넘어가는것 같다.
         if (accountRepository.existsByEmail(signUpForm.getEmail())) {
             errors.rejectValue("email", "invalid.email", new Object[]{signUpForm.getEmail()}, "이미 사용중인 이메일 입니다.");
         }
